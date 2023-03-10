@@ -8,11 +8,11 @@
         <version>2.6.2</version>
         <relativePath/>
     </parent>
-    <groupId>com.example</groupId>
-    <artifactId>yin</artifactId>
+    <groupId>edu.lntu.liuu</groupId>
+    <artifactId>Liuu</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Yin-music</name>
-    <description>music-website project for Spring Boot</description>
+    <name>LNTU-Music</name>
+    <description>Music-website project for Spring Boot in Liaoning Technical University</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
