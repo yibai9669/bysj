@@ -3,6 +3,7 @@ package edu.lntu.liuu.controller;
 import edu.lntu.liuu.common.FatalMessage;
 import edu.lntu.liuu.common.ErrorMessage;
 import edu.lntu.liuu.common.SuccessMessage;
+import edu.lntu.liuu.config.QiNiuUtil;
 import edu.lntu.liuu.constant.Constants;
 import edu.lntu.liuu.domain.SongList;
 import edu.lntu.liuu.service.impl.SongListServiceImpl;
@@ -127,10 +128,11 @@ public class SongListController {
             file1.mkdir();
         }
 
-        File dest = new File(filePath + System.getProperty("file.separator") + fileName);
-        String imgPath = "/img/songListPic/" + fileName;
-        try {
-            avatorFile.transferTo(dest);
+       // File dest = new File(filePath + System.getProperty("file.separator") + fileName);
+        String imgPath = "img/songListPic/" + fileName;
+        boolean uploadResult = QiNiuUtil.uploadMultipartFile(avatorFile, imgPath, true);
+        if (uploadResult){
+
             SongList songList = new SongList();
             songList.setId(id);
             songList.setPic(imgPath);
@@ -141,8 +143,8 @@ public class SongListController {
             } else {
                 return new ErrorMessage("上传失败").getMessage();
             }
-        } catch (IOException e) {
-            return new FatalMessage("上传失败" + e.getMessage()).getMessage();
         }
+            return new FatalMessage("上传失败" ).getMessage();
+
     }
 }

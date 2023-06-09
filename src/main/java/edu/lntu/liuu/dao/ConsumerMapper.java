@@ -8,7 +8,7 @@ import java.util.List;
 @Repository
 public interface ConsumerMapper {
 
-    int deleteByPrimaryKey(Integer id);
+   // int deleteByPrimaryKey(Integer id);
 
     int insert(Consumer record);
 
@@ -19,9 +19,9 @@ public interface ConsumerMapper {
      */
     int insertSelective(Consumer record);
 
-    Consumer selectByPrimaryKey(Integer id);
+    //Consumer selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKeySelective(Consumer record);
+    //int updateByPrimaryKeySelective(Consumer record);
 
     int updateByPrimaryKey(Consumer record);
 
@@ -29,7 +29,7 @@ public interface ConsumerMapper {
 
     int existUsername(String username);
 
-    int addUser(Consumer consumer);
+    //int addUser(Consumer consumer);
 
     int updateUserMsg(Consumer record);
 

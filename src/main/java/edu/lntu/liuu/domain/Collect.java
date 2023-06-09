@@ -9,11 +9,11 @@ public class Collect {
 
     private Integer userId;
 
-    private Byte type;
+//    private Byte type;
 
     private Integer songId;
 
-    private Integer songListId;
+//    private Integer songListId;
 
     private Date createTime;
 
@@ -33,14 +33,14 @@ public class Collect {
         this.userId = userId;
     }
 
-    public Byte getType() {
+   /* public Byte getType() {
         return type;
     }
 
     public void setType(Byte type) {
         this.type = type;
     }
-
+*/
     public Integer getSongId() {
         return songId;
     }
@@ -49,21 +49,21 @@ public class Collect {
         this.songId = songId;
     }
 
-    public Integer getSongListId() {
+  /*  public Integer getSongListId() {
         return songListId;
     }
 
     public void setSongListId(Integer songListId) {
         this.songListId = songListId;
     }
-
-    public Date getCreateTime() {
+*/
+/*    public Date getCreateTime() {
         return createTime;
     }
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
-    }
+    }*/
 
     @Override
     public String toString() {

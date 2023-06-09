@@ -8,13 +8,10 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- * @author Administrator
- */
 @Service
 public class RankListServiceImpl implements RankListService {
 
-    private static final Logger logger = LogManager.getLogger(RankListServiceImpl.class);
+    private static final Logger logger = Logger.getLogger(RankListServiceImpl.class);
 
     @Autowired
     private RankListMapper rankMapper;
@@ -33,6 +30,7 @@ public class RankListServiceImpl implements RankListService {
 
     @Override
     public int getUserRank(Long consumerId, Long songListId) {
+
         return rankMapper.selectUserRank(consumerId, songListId);
     }
 }

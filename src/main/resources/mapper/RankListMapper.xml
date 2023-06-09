@@ -22,7 +22,7 @@
 
   <insert id="insert" parameterType="edu.lntu.liuu.domain.RankList">
     insert into rank_list (songListId, consumerId, score)
-    values (#{#{songListId,jdbcType=BIGINT}, #{consumerId,jdbcType=BIGINT}, #{score,jdbcType=INTEGER})
+    values (#{songListId,jdbcType=BIGINT}, #{consumerId,jdbcType=BIGINT}, #{score,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="edu.lntu.liuu.domain.RankList">
     insert into rank_list

@@ -6,8 +6,8 @@
     <result column="singer_id" property="singerId" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="introduction" property="introduction" jdbcType="VARCHAR" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <!--<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />-->
     <result column="pic" property="pic" jdbcType="VARCHAR" />
     <result column="url" property="url" jdbcType="VARCHAR" />
   </resultMap>
@@ -15,7 +15,8 @@
     <result column="lyric" property="lyric" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, singer_id, name, introduction, create_time, update_time, pic
+    id, singer_id, name, introduction, pic
+#     id, singer_id, name, introduction, create_time, update_time, pic
   </sql>
   <sql id="Blob_Column_List">
     lyric
@@ -49,9 +50,13 @@
     where id = #{id, jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="edu.lntu.liuu.domain.Song">
+    insert into song (id, singer_id, name, introduction,  pic, lyric)
+    values (#{id,jdbcType=INTEGER}, #{singerId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR}, #{pic,jdbcType=VARCHAR}, #{lyric,jdbcType=LONGVARCHAR})
+  </insert>
+<!--  <insert id="insert" parameterType="edu.lntu.liuu.domain.Song">
     insert into song (id, singer_id, name, introduction, create_time, update_time, pic, lyric)
     values (#{id,jdbcType=INTEGER}, #{singerId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{pic,jdbcType=VARCHAR}, #{lyric,jdbcType=LONGVARCHAR})
-  </insert>
+  </insert>-->
   <insert id="insertSelective" parameterType="edu.lntu.liuu.domain.Song">
     insert into song
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -67,12 +72,12 @@
       <if test="introduction != null">
         introduction,
       </if>
-      <if test="createTime != null">
+      <!--<if test="createTime != null">
         create_time,
       </if>
       <if test="updateTime != null">
         update_time,
-      </if>
+      </if>-->
       <if test="pic != null">
         pic,
       </if>
@@ -92,10 +97,10 @@
       </if>
       <if test="introduction != null"> #{introduction,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null"> #{createTime,jdbcType=TIMESTAMP},
+    <!--  <if test="createTime != null"> #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateTime != null"> #{updateTime,jdbcType=TIMESTAMP},
-      </if>
+      </if>-->
       <if test="pic != null"> #{pic,jdbcType=VARCHAR},
       </if>
       <if test="lyric != null"> #{lyric,jdbcType=LONGVARCHAR},
@@ -116,12 +121,12 @@
       <if test="introduction != null">
         introduction = #{introduction,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null">
+     <!-- <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateTime != null">
         update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
+      </if>-->
       <if test="pic != null">
         pic = #{pic,jdbcType=VARCHAR},
       </if>
@@ -154,8 +159,8 @@
     set singer_id = #{singerId,jdbcType=INTEGER},
     name = #{name,jdbcType=VARCHAR},
     introduction = #{introduction,jdbcType=VARCHAR},
-    create_time = #{createTime,jdbcType=TIMESTAMP},
-    update_time = #{updateTime,jdbcType=TIMESTAMP},
+  /*  create_time = #{createTime,jdbcType=TIMESTAMP},
+    update_time = #{updateTime,jdbcType=TIMESTAMP},*/
     pic = #{pic,jdbcType=VARCHAR},
     url = #{url,jdbcType=VARCHAR},
     lyric = #{lyric,jdbcType=LONGVARCHAR}
@@ -166,8 +171,8 @@
     set singer_id = #{singerId,jdbcType=INTEGER},
       name = #{name,jdbcType=VARCHAR},
       introduction = #{introduction,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
+    /*  create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},*/
       pic = #{pic,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>

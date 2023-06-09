@@ -1,5 +1,6 @@
 package edu.lntu.liuu.service.impl;
 
+import com.mysql.cj.Query;
 import edu.lntu.liuu.dao.ListSongMapper;
 import edu.lntu.liuu.domain.ListSong;
 import edu.lntu.liuu.service.ListSongService;
@@ -17,6 +18,7 @@ public class ListSongServiceImpl implements ListSongService {
     @Override
     public List<ListSong> allListSong()
     {
+
         return listSongMapper.allListSong();
     }
 

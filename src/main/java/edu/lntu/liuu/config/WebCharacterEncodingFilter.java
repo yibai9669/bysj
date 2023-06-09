@@ -15,10 +15,7 @@ import java.util.List;
  * <p>
  *     因使用WebMvcConfigurer加载静态时urlencode编码无法解析为正常中文问题
  * </p>
- *
- * @Author: Winston.Li
- * @Create: 2022-03-13 13:50
- * @version: V 0.0.1
+
  */
 @EnableWebMvc
 @Configuration

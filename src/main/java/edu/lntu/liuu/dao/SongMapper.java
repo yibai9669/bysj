@@ -7,7 +7,7 @@ import java.util.List;
 
 @Repository
 public interface SongMapper {
-    int deleteByPrimaryKey(Integer id);
+    //int deleteByPrimaryKey(Integer id);
 
     int insert(Song record);
 
@@ -15,7 +15,7 @@ public interface SongMapper {
 
     Song selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKeySelective(Song record);
+   // int updateByPrimaryKeySelective(Song record);
 
     int updateByPrimaryKeyWithBLOBs(Song record);
 

@@ -22,13 +22,13 @@ public class Consumer {
 
     private String introduction;
 
-    private String location;
+   // private String location;
 
     private String avator;
 
-    private Date createTime;
+/*    private Date createTime;
 
-    private Date updateTime;
+    private Date updateTime;*/
 
     public Integer getId() {
         return id;
@@ -94,13 +94,13 @@ public class Consumer {
         this.introduction = introduction == null ? null : introduction.trim();
     }
 
-    public String getLocation() {
+   /* public String getLocation() {
         return location;
     }
 
     public void setLocation(String location) {
         this.location = location == null ? null : location.trim();
-    }
+    }*/
 
     public String getAvator() {
         return avator;
@@ -110,7 +110,7 @@ public class Consumer {
         this.avator = avator == null ? null : avator.trim();
     }
 
-    public Date getCreateTime() {
+/*    public Date getCreateTime() {
         return createTime;
     }
 
@@ -124,7 +124,7 @@ public class Consumer {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
+    }*/
 
     @Override
     public String toString() {

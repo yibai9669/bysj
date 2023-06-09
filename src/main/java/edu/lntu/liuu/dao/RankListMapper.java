@@ -31,5 +31,5 @@ public interface RankListMapper {
      * @param songListId
      * @return
      */
-    int selectUserRank(@Param("consumerId") Long consumerId, @Param("songListId")  Long songListId);
+    Integer selectUserRank(@Param("consumerId") Long consumerId, @Param("songListId")  Long songListId);
 }

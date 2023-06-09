@@ -27,19 +27,10 @@ public class CollectController {
     @RequestMapping(value = "/collection/add", method = RequestMethod.POST)
     public Object addCollection(HttpServletRequest req) {
         String user_id = req.getParameter("userId");
-        String type = req.getParameter("type");
         String song_id = req.getParameter("songId");
-        String song_list_id = req.getParameter("songListId");
-
         Collect collect = new Collect();
         collect.setUserId(Integer.parseInt(user_id));
-        collect.setType(new Byte(type));
-        if (new Byte(type) == 0) {
-            collect.setSongId(Integer.parseInt(song_id));
-        } else if (new Byte(type) == 1) {
-            collect.setSongListId(Integer.parseInt(song_list_id));
-        }
-        collect.setCreateTime(new Date());
+        collect.setSongId(Integer.parseInt(song_id));
 
         boolean res = collectService.addCollection(collect);
         if (res) {

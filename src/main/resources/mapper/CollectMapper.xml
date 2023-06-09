@@ -4,13 +4,15 @@
   <resultMap id="BaseResultMap" type="edu.lntu.liuu.domain.Collect">
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="user_id" property="userId" jdbcType="INTEGER" />
-    <result column="type" property="type" jdbcType="TINYINT" />
+<!--    <result column="type" property="type" jdbcType="TINYINT" />-->
     <result column="song_id" property="songId" jdbcType="INTEGER" />
-    <result column="song_list_id" property="songListId" jdbcType="INTEGER" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+<!--    <result column="song_list_id" property="songListId" jdbcType="INTEGER" />-->
+<!--    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />-->
   </resultMap>
   <sql id="Base_Column_List">
-    id, user_id, type, song_id, song_list_id, create_time
+    id, user_id,  song_id
+#     id, user_id,  song_id,  create_time
+#     id, user_id, type, song_id, song_list_id, create_time
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
     select
@@ -34,10 +36,10 @@
     where user_id = #{userId, jdbcType=INTEGER}
     and song_id = #{songId, jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="edu.lntu.liuu.domain.Collect">
+  <!--<insert id="insert" parameterType="edu.lntu.liuu.domain.Collect">
     insert into collection (id, user_id, type, song_id, song_list_id, create_time)
     values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{type,jdbcType=TINYINT}, #{songId,jdbcType=INTEGER}, #{songListId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP})
-  </insert>
+  </insert>-->
   <insert id="insertSelective" parameterType="edu.lntu.liuu.domain.Collect">
     insert into collect
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -47,41 +49,41 @@
       <if test="userId != null">
         user_id,
       </if>
-      <if test="type != null">
+      <!--<if test="type != null">
         type,
-      </if>
+      </if>-->
       <if test="songId != null">
         song_id,
       </if>
-      <if test="songListId != null">
+      <!--<if test="songListId != null">
         song_list_id,
-      </if>
-      <if test="createTime != null">
+      </if>-->
+     <!-- <if test="createTime != null">
         create_time,
-      </if>
+      </if>-->
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null"> #{id,jdbcType=INTEGER},
       </if>
       <if test="userId != null"> #{userId,jdbcType=INTEGER},
       </if>
-      <if test="type != null"> #{type,jdbcType=TINYINT},
-      </if>
+     <!-- <if test="type != null"> #{type,jdbcType=TINYINT},
+      </if>-->
       <if test="songId != null"> #{songId,jdbcType=INTEGER},
       </if>
-      <if test="songListId != null"> #{songListId,jdbcType=INTEGER},
-      </if>
-      <if test="createTime != null"> #{createTime,jdbcType=TIMESTAMP},
-      </if>
+     <!-- <if test="songListId != null"> #{songListId,jdbcType=INTEGER},
+      </if>-->
+      <!--<if test="createTime != null"> #{createTime,jdbcType=TIMESTAMP},
+      </if>-->
     </trim>
   </insert>
   <update id="updateByPrimaryKey" parameterType="edu.lntu.liuu.domain.Collect">
     update collect
     set user_id = #{userId,jdbcType=INTEGER},
-      type = #{type,jdbcType=TINYINT},
-      song_id = #{songId,jdbcType=INTEGER},
-      song_list_id = #{songListId,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=TIMESTAMP}
+#       type = #{type,jdbcType=TINYINT},
+      song_id = #{songId,jdbcType=INTEGER}
+#       song_list_id = #{songListId,jdbcType=INTEGER},
+#       create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -10,13 +10,14 @@
     <result column="email" property="email" jdbcType="CHAR" />
     <result column="birth" property="birth" jdbcType="TIMESTAMP" />
     <result column="introduction" property="introduction" jdbcType="VARCHAR" />
-    <result column="location" property="location" jdbcType="VARCHAR" />
+<!--    <result column="location" property="location" jdbcType="VARCHAR" />-->
     <result column="avator" property="avator" jdbcType="VARCHAR" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+<!--    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />-->
   </resultMap>
   <sql id="Base_Column_List">
-    id, username, password, sex, phone_num, email, birth, introduction, location, avator, create_time, update_time
+    id, username, password, sex, phone_num, email, birth, introduction,  avator
+#     id, username, password, sex, phone_num, email, birth, introduction,  avator, create_time, update_time
   </sql>
   <select id="userOfId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
     select
@@ -50,9 +51,10 @@
   <insert id="insert" parameterType="edu.lntu.liuu.domain.Consumer">
     insert into consumer (id, username, password,
       sex, phone_num, email, birth,
-      introduction, location, avator,
-      create_time, update_time)
-    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{sex,jdbcType=TINYINT}, #{phoneNum,jdbcType=CHAR}, #{email,jdbcType=CHAR}, #{birth,jdbcType=TIMESTAMP}, #{introduction,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, #{avator,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+      introduction,  avator)
+#       create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{sex,jdbcType=TINYINT}, #{phoneNum,jdbcType=CHAR}, #{email,jdbcType=CHAR}, #{birth,jdbcType=TIMESTAMP}, #{introduction,jdbcType=VARCHAR}, #{avator,jdbcType=VARCHAR})
+#     values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{sex,jdbcType=TINYINT}, #{phoneNum,jdbcType=CHAR}, #{email,jdbcType=CHAR}, #{birth,jdbcType=TIMESTAMP}, #{introduction,jdbcType=VARCHAR}, #{avator,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="edu.lntu.liuu.domain.Consumer">
     insert into consumer
@@ -78,18 +80,18 @@
       <if test="introduction != null">
         introduction,
       </if>
-      <if test="location != null">
+    <!--  <if test="location != null">
         location,
-      </if>
+      </if>-->
       <if test="avator != null">
         avator,
       </if>
-      <if test="createTime != null">
+     <!-- <if test="createTime != null">
         create_time,
       </if>
       <if test="updateTime != null">
         update_time,
-      </if>
+      </if>-->
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="username != null"> #{username,jdbcType=VARCHAR},
@@ -106,14 +108,14 @@
       </if>
       <if test="introduction != null"> #{introduction,jdbcType=VARCHAR},
       </if>
-      <if test="location != null"> #{location,jdbcType=VARCHAR},
-      </if>
+     <!-- <if test="location != null"> #{location,jdbcType=VARCHAR},
+      </if>-->
       <if test="avator != null"> #{avator,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null"> #{createTime,jdbcType=TIMESTAMP},
+     <!-- <if test="createTime != null"> #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateTime != null"> #{updateTime,jdbcType=TIMESTAMP},
-      </if>
+      </if>-->
     </trim>
   </insert>
 
@@ -141,18 +143,18 @@
       <if test="introduction != null">
         introduction = #{introduction,jdbcType=VARCHAR},
       </if>
-      <if test="location != null">
+     <!-- <if test="location != null">
         location = #{location,jdbcType=VARCHAR},
-      </if>
+      </if>-->
       <if test="avator != null">
         avator = #{avator,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null">
+     <!-- <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateTime != null">
         update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
+      </if>-->
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -182,11 +184,10 @@
     phone_num = #{phoneNum,jdbcType=CHAR},
     email = #{email,jdbcType=CHAR},
     birth = #{birth,jdbcType=TIMESTAMP},
-    introduction = #{introduction,jdbcType=VARCHAR}
-    location = #{location,jdbcType=VARCHAR},
-    avator = #{avator,jdbcType=VARCHAR},
+    introduction = #{introduction,jdbcType=VARCHAR},
+    avator = #{avator,jdbcType=VARCHAR}/*,
     create_time = #{createTime,jdbcType=TIMESTAMP},
-    update_time = #{updateTime,jdbcType=TIMESTAMP},
+    update_time = #{updateTime,jdbcType=TIMESTAMP},*/
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

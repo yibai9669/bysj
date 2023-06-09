@@ -3,7 +3,6 @@ package edu.lntu.liuu.controller;
 import edu.lntu.liuu.common.ErrorMessage;
 import edu.lntu.liuu.common.SuccessMessage;
 import edu.lntu.liuu.service.impl.AdminServiceImpl;
-
 import org.apache.commons.lang3.ObjectUtils.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +17,7 @@ import javax.servlet.http.HttpSession;
 public class AdminController {
     @Autowired
     private AdminServiceImpl adminService;
+
 
     // 判断是否登录成功
     @ResponseBody

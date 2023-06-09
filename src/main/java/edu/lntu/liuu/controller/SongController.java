@@ -3,6 +3,7 @@ package edu.lntu.liuu.controller;
 import edu.lntu.liuu.common.FatalMessage;
 import edu.lntu.liuu.common.ErrorMessage;
 import edu.lntu.liuu.common.SuccessMessage;
+import edu.lntu.liuu.config.QiNiuUtil;
 import edu.lntu.liuu.constant.Constants;
 import edu.lntu.liuu.domain.Song;
 import edu.lntu.liuu.service.impl.SongServiceImpl;
@@ -64,22 +65,24 @@ public class SongController {
         String lyric = req.getParameter("lyric").trim();
 
         String fileName = mpfile.getOriginalFilename();
-        String filePath = System.getProperty("user.dir") + System.getProperty("file.separator") + "song";
+       /* String filePath = System.getProperty("user.dir") + System.getProperty("file.separator") + "song";
         File file1 = new File(filePath);
         if (!file1.exists()) {
             file1.mkdir();
-        }
+        }*/
 
-        File dest = new File(filePath + System.getProperty("file.separator") + fileName);
-        String storeUrlPath = "/song/" + fileName;
-        try {
-            mpfile.transferTo(dest);
+       // File dest = new File(filePath + System.getProperty("file.separator") + fileName);
+
+        String storeUrlPath = "song/" + fileName;
+        boolean uploadResult = QiNiuUtil.uploadMultipartFile(mpfile, storeUrlPath, true);
+        if (uploadResult){
+
             Song song = new Song();
             song.setSingerId(Integer.parseInt(singer_id));
             song.setName(name);
             song.setIntroduction(introduction);
-            song.setCreateTime(new Date());
-            song.setUpdateTime(new Date());
+//            song.setCreateTime(new Date());
+//            song.setUpdateTime(new Date());
             song.setPic(pic);
             song.setLyric(lyric);
             song.setUrl(storeUrlPath);
@@ -89,9 +92,7 @@ public class SongController {
             } else {
                 return new ErrorMessage("上传失败").getMessage();
             }
-        } catch (IOException e) {
-            return new FatalMessage("上传失败" + e.getMessage()).getMessage();
-        }
+        } return new ErrorMessage("上传失败").getMessage();
     }
 
     // 删除歌曲
@@ -152,7 +153,7 @@ public class SongController {
         song.setSingerId(Integer.parseInt(singer_id));
         song.setName(name);
         song.setIntroduction(introduction);
-        song.setUpdateTime(new Date());
+//        song.setUpdateTime(new Date());
         song.setLyric(lyric);
 
         boolean res = songService.updateSongMsg(song);
@@ -168,16 +169,16 @@ public class SongController {
     @RequestMapping(value = "/song/img/update", method = RequestMethod.POST)
     public Object updateSongPic(@RequestParam("file") MultipartFile urlFile, @RequestParam("id") int id) {
         String fileName = System.currentTimeMillis() + urlFile.getOriginalFilename();
-        String filePath = System.getProperty("user.dir") + System.getProperty("file.separator") + "img" + System.getProperty("file.separator") + "songPic";
+        /*String filePath = System.getProperty("user.dir") + System.getProperty("file.separator") + "img" + System.getProperty("file.separator") + "songPic";
         File file1 = new File(filePath);
         if (!file1.exists()) {
             file1.mkdir();
         }
-
-        File dest = new File(filePath + System.getProperty("file.separator") + fileName);
-        String storeUrlPath = "/img/songPic/" + fileName;
-        try {
-            urlFile.transferTo(dest);
+*/
+        //File dest = new File(filePath + System.getProperty("file.separator") + fileName);
+        String storeUrlPath = "img/songPic/" + fileName;
+        boolean uploadResult = QiNiuUtil.uploadMultipartFile(urlFile, storeUrlPath, true);
+        if (uploadResult){
             Song song = new Song();
             song.setId(id);
             song.setPic(storeUrlPath);
@@ -187,9 +188,9 @@ public class SongController {
             } else {
                 return new ErrorMessage("上传失败").getMessage();
             }
-        } catch (IOException e) {
-            return new FatalMessage("上传失败" + e.getMessage()).getMessage();
         }
+            return new FatalMessage("上传失败").getMessage();
+
     }
 
     // 更新歌曲
@@ -197,16 +198,16 @@ public class SongController {
     @RequestMapping(value = "/song/url/update", method = RequestMethod.POST)
     public Object updateSongUrl(@RequestParam("file") MultipartFile urlFile, @RequestParam("id") int id) {
         String fileName = urlFile.getOriginalFilename();
-        String filePath = System.getProperty("user.dir") + System.getProperty("file.separator") + "song";
-        File file1 = new File(filePath);
+        //String filePath = System.getProperty("user.dir") + System.getProperty("file.separator") + "song";
+       /* File file1 = new File(filePath);
         if (!file1.exists()) {
             file1.mkdir();
-        }
+        }*/
 
-        File dest = new File(filePath + System.getProperty("file.separator") + fileName);
-        String storeUrlPath = "/song/" + fileName;
-        try {
-            urlFile.transferTo(dest);
+       // File dest = new File(filePath + System.getProperty("file.separator") + fileName);
+        String storeUrlPath = "song/" + fileName;
+        boolean uploadResult = QiNiuUtil.uploadMultipartFile(urlFile, storeUrlPath, true);
+        if (uploadResult){
             Song song = new Song();
             song.setId(id);
             song.setUrl(storeUrlPath);
@@ -216,8 +217,9 @@ public class SongController {
             } else {
                 return new ErrorMessage("更新失败").getMessage();
             }
-        } catch (IOException e) {
-            return new FatalMessage("更新失败" + e.getMessage()).getMessage();
         }
+
+            return new FatalMessage("更新失败").getMessage();
+
     }
 }

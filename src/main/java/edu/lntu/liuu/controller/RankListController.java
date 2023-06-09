@@ -7,6 +7,7 @@ import edu.lntu.liuu.service.impl.RankListServiceImpl;
 
 import org.apache.commons.lang3.ObjectUtils.Null;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -54,7 +55,14 @@ public class RankListController {
     public Object getUserRank(HttpServletRequest req) {
         String consumerId = req.getParameter("consumerId");
         String songListId = req.getParameter("songListId");
-        
+//        ResponseEntity 是 Spring 框架中用于表示 HTTP 响应的类，它包含了响应的状态码、头信息和正文
+        if (consumerId == null || consumerId.trim().isEmpty()) {
+            return ResponseEntity.badRequest().body("用户未登录，故不能显示");
+        }
+        if (songListId == null || songListId.trim().isEmpty()) {
+            return ResponseEntity.badRequest().body("songListId 不能为空");
+        }
         return new SuccessMessage<Number>(null, rankListService.getUserRank(Long.parseLong(consumerId), Long.parseLong(songListId))).getMessage();
+
     }
 }

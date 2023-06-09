@@ -4,6 +4,7 @@ import edu.lntu.liuu.common.FatalMessage;
 import edu.lntu.liuu.common.ErrorMessage;
 import edu.lntu.liuu.common.SuccessMessage;
 import edu.lntu.liuu.common.WarningMessage;
+import edu.lntu.liuu.config.QiNiuUtil;
 import edu.lntu.liuu.constant.Constants;
 import edu.lntu.liuu.domain.Consumer;
 import edu.lntu.liuu.service.impl.ConsumerServiceImpl;
@@ -54,7 +55,6 @@ public class ConsumerController {
         String email = req.getParameter("email").trim();
         String birth = req.getParameter("birth").trim();
         String introduction = req.getParameter("introduction").trim();
-        String location = req.getParameter("location").trim();
         String avator = "/img/avatorImages/user.jpg";
 
         if(consumerService.existUser(username)) {
@@ -85,10 +85,7 @@ public class ConsumerController {
         }
         consumer.setBirth(myBirth);
         consumer.setIntroduction(introduction);
-        consumer.setLocation(location);
         consumer.setAvator(avator);
-        consumer.setCreateTime(new Date());
-        consumer.setUpdateTime(new Date());
 
         try {
             boolean res = consumerService.addUser(consumer);
@@ -166,9 +163,6 @@ public class ConsumerController {
         String email = req.getParameter("email").trim();
         String birth = req.getParameter("birth").trim();
         String introduction = req.getParameter("introduction").trim();
-        String location = req.getParameter("location").trim();
-        // System.out.println(username);
-
         Consumer consumer = new Consumer();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date myBirth = new Date();
@@ -183,8 +177,6 @@ public class ConsumerController {
         consumer.setPhoneNum(phone_num);
         consumer.setEmail(email);
         consumer.setIntroduction(introduction);
-        consumer.setLocation(location);
-        consumer.setUpdateTime(new Date());
         consumer.setBirth(myBirth);
 
         boolean res = consumerService.updateUserMsg(consumer);
@@ -230,16 +222,17 @@ public class ConsumerController {
     @RequestMapping(value = "/user/avatar/update", method = RequestMethod.POST)
     public Object updateUserPic(@RequestParam("file") MultipartFile avatorFile, @RequestParam("id") int id) {
         String fileName = System.currentTimeMillis() + avatorFile.getOriginalFilename();
-        String filePath = Constants.PROJECT_PATH + System.getProperty("file.separator") + "img" + System.getProperty("file.separator") + "avatorImages";
+        String filePath = System.getProperty("file.separator") + "img" + System.getProperty("file.separator") + "avatorImages";
         File file1 = new File(filePath);
         if (!file1.exists()) {
             file1.mkdir();
         }
 
-        File dest = new File(filePath + System.getProperty("file.separator") + fileName);
-        String imgPath = "/img/avatorImages/" + fileName;
-        try {
-            avatorFile.transferTo(dest);
+       // File dest = new File(filePath + System.getProperty("file.separator") + fileName);
+        String imgPath = "img/avatorImages/" + fileName;
+        boolean uploadResult = QiNiuUtil.uploadMultipartFile(avatorFile, imgPath, true);
+        if (uploadResult){
+
             Consumer consumer = new Consumer();
             consumer.setId(id);
             consumer.setAvator(imgPath);
@@ -249,8 +242,6 @@ public class ConsumerController {
             } else {
                 return new ErrorMessage("上传失败").getMessage();
             }
-        } catch (IOException e) {
-            return new FatalMessage("上传失败" + e.getMessage()).getMessage();
-        }
+        }return new FatalMessage("上传失败").getMessage();
     }
 }

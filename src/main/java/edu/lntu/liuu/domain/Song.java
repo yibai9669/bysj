@@ -14,9 +14,9 @@ public class Song {
 
     private String introduction;
 
-    private Date createTime;
+/*    private Date createTime;
 
-    private Date updateTime;
+    private Date updateTime;*/
 
     private String pic;
 
@@ -56,7 +56,7 @@ public class Song {
         this.introduction = introduction == null ? null : introduction.trim();
     }
 
-    public Date getCreateTime() {
+    /*public Date getCreateTime() {
         return createTime;
     }
 
@@ -70,7 +70,7 @@ public class Song {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
+    }*/
 
     public String getPic() {
         return pic;
