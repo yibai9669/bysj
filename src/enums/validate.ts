@@ -15,6 +15,7 @@ export const validatePassword = (rule, value, callback) => {
   }
 };
 
+
 export const SignInRules = {
   username: [{ validator: validateName, trigger: "blur", min: 3 }],
   password: [{ validator: validatePassword, trigger: "blur", min: 3 }],
@@ -22,10 +23,15 @@ export const SignInRules = {
 
 // 注册规则
 export const SignUpRules = {
-  username: [{ required: true, trigger: "blur", min: 3 }],
-  password: [{ required: true, trigger: "blur", min: 3 }],
+  username: [{ required: true, trigger: "blur", min: 3,max:10 }],
+  password: [{ required: true, trigger: "blur", min: 8,max:16 }],
   sex: [{ required: true, message: "请选择性别", trigger: "change" }],
-  phoneNum: [{ essage: "请选择日期", trigger: "blur" }],
+  phoneNum: [
+    { required: true, message: "请输入手机号", trigger: "blur" },
+    // 这个只能验证手机号
+    // { pattern:/^0{0,1}(13[0-9]|15[7-9]|153|156|18[7-9])[0-9]{8}$/, message: "请输入合法手机号", trigger: "blur" }
+    { pattern:/^((0\d{2,3}-\d{7,8})|(1[3584]\d{9}))$/, message: "请输入合法手机号/电话号", trigger: "blur" }
+  ],
   email: [
     { message: "请输入邮箱地址", trigger: "blur" },
     {

@@ -3,12 +3,12 @@
     <!--图标-->
     <div class="header-logo" @click="goPage()">
       <yin-icon :icon="iconList.ERJI"></yin-icon>
-      <span>{{ musicName }}</span>
+<!--      <span>{{ musicName }}</span>-->
     </div>
     <yin-header-nav class="yin-header-nav" :styleList="headerNavList" :activeName="activeNavName" @click="goPage"></yin-header-nav>
     <!--搜索框-->
     <div class="header-search">
-      <el-input placeholder="搜索" :prefix-icon="Search" v-model="keywords" @keyup.enter="goSearch()" />
+      <el-input placeholder="搜索" :prefix-icon="Search" v-model="keywords" @keyup.enter="goSearch()"  clearable  />
     </div>
     <!--设置-->
     <yin-header-nav v-if="!token" :styleList="signList" :activeName="activeNavName" @click="goPage"></yin-header-nav>
@@ -30,7 +30,8 @@ import { useStore } from "vuex";
 import YinIcon from "./YinIcon.vue";
 import YinHeaderNav from "./YinHeaderNav.vue";
 import mixin from "@/mixins/mixin";
-import { HEADERNAVLIST, SIGNLIST, MENULIST, Icon, MUSICNAME, RouterName, NavName } from "@/enums";
+// import { HEADERNAVLIST, SIGNLIST, MENULIST, Icon, MUSICNAME, RouterName, NavName } from "@/enums";
+import { HEADERNAVLIST, SIGNLIST, MENULIST, Icon,  RouterName, NavName } from "@/enums";
 import { HttpManager } from "@/api";
 
 export default defineComponent({
@@ -43,7 +44,7 @@ export default defineComponent({
     const store = useStore();
     const { changeIndex, routerManager } = mixin();
 
-    const musicName = ref(MUSICNAME);
+    // const musicName = ref(MUSICNAME);
     const headerNavList = ref(HEADERNAVLIST); // 左侧导航栏
     const signList = ref(SIGNLIST); // 右侧导航栏
     const menuList = ref(MENULIST); // 用户下拉菜单项
@@ -87,7 +88,7 @@ export default defineComponent({
     }
 
     return {
-      musicName,
+      // musicName,
       headerNavList,
       signList,
       menuList,
@@ -136,7 +137,8 @@ export default defineComponent({
   padding: $header-padding;
   margin: $header-margin;
   background-color: $theme-header-color;
-  box-shadow: $box-shadow;
+  box-shadow: 0 0 10px $shadow-color;
+  //box-shadow: $box-shadow;
   box-sizing: border-box;
   z-index: 100;
   display: flex;
@@ -164,7 +166,7 @@ export default defineComponent({
 
 /*搜索输入框*/
 .header-search {
-  margin: 0 20px;
+  margin: 0 25vw;
   width: 100%;
   &::v-deep input {
     text-indent: 5px;

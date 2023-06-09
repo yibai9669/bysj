@@ -1,14 +1,18 @@
 <template>
   <!--轮播图-->
-  <el-carousel class="swiper-container" type="card" height="20vw" :interval="4000">
+  <el-carousel class="swiper-container" type="card" height="20vw" :interval="2000">
     <el-carousel-item v-for="(item, index) in swiperList" :key="index">
-      <img :src="item.picImg" />
+      <router-link :to="{path:item.path+'/'+item.url}">
+        <img :src="item.picImg" />
+      </router-link>
     </el-carousel-item>
+
   </el-carousel>
-  <!--热门歌单-->
-  <play-list class="play-list-container" title="歌单" path="song-sheet-detail" :playList="songList"></play-list>
   <!--热门歌手-->
   <play-list class="play-list-container" title="歌手" path="singer-detail" :playList="singerList"></play-list>
+  <!--热门歌单-->
+  <play-list class="play-list-container" title="歌单" path="song-sheet-detail" :playList="songList"></play-list>
+
 </template>
 
 <script lang="ts" setup>
@@ -43,7 +47,7 @@ try {
 
 /*轮播图*/
 .swiper-container {
-  width: 90%;
+  width: 100%;
   margin: auto;
   padding-top: 20px;
   img {
@@ -58,5 +62,10 @@ try {
 
 .el-slider__runway {
   background-color: $color-blue;
+}
+
+
+ :deep .el-carousel__indicators--outside{
+  margin-left: 17% !important;
 }
 </style>

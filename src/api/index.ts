@@ -2,9 +2,10 @@ import { getBaseURL, get, post, deletes } from "./request";
 
 const HttpManager = {
   // 获取图片信息
-  attachImageUrl: (url) => url ? `${getBaseURL()}/${url}` : "https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png",
+  //将图片的 URL 转换为完整的 URL。如果传入的 URL 不为空，则返回完整的 URL，否则返回默认图片的 URL
+  attachImageUrl: (url) => url ? `${getBaseURL()}/${url}` : "http://liuu17.xyz/img/moren.jpg",
   // =======================> 用户 API
-  // 登录
+  // 用户并返回登录状态
   signIn: (params) => post(`user/login/status`, params),
   // 注册
   SignUp: (params) => post(`user/add`, params),

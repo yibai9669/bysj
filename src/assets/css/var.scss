@@ -15,9 +15,10 @@ $color-red: rgb(245, 108, 108);
 $theme-color: $color-blue;
 $theme-background-color: #e6ecf0;
 $theme-header-color: $color-light-white;
+$theme-header-color: $color-light-white;
 $theme-footer-color: $theme-background-color;
 $theme-play-bar-color: $color-light-white;
-
+$shadow-color:#1E90FF ;
 // Fonts
 $font-family: Lato, Helvetica Neue For Number, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, PingFang SC, Hiragino Sans GB, Microsoft YaHei,
   Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -28,13 +29,13 @@ $font-size-header: 1rem;
 
 // header
 $header-height: 60px;
-$header-padding: 0 4%;
+$header-padding: 0 0%;
 $header-margin: 0;
-$header-logo-width: 10%;
-$header-logo-margin: 0 10px;
+$header-logo-width: 2%;
+$header-logo-margin: 0 00px;
 $header-nav-padding: 0 0.5rem;
 $header-nav-margin: 0 0.5rem;
-$header-search-radius: 10px;
+$header-search-radius: 20px;
 $header-search-height: $header-height - 20px;
 $header-search-max-width: 25vw;
 $header-search-min-width: 200px;
@@ -61,7 +62,8 @@ $current-play: 350px;
 $play-bar-height: 60px;
 
 // style
-$box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+//$box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+//$box-shadow: 0 0 10px linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
 
 // Media queries
 $sm: 668px;

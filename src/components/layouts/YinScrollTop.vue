@@ -44,7 +44,7 @@ export default defineComponent({
   background-color: $color-white;
   border-radius: 20%;
   overflow: hidden;
-  box-shadow: 0 0 4px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 4px 3px #1E90FF;
   cursor: pointer;
   &:hover:before {
     top: 50%;
@@ -53,7 +53,8 @@ export default defineComponent({
     visibility: hidden;
   }
   &:before {
-    content: "回到顶部";
+    content: "Top";
+    color: #1E90FF;
     position: absolute;
     font-weight: bold;
     font-size: small;
@@ -70,7 +71,7 @@ export default defineComponent({
   height: 10px;
   width: 10px;
   border: 1px solid $color-black;
-  border-color: $color-black transparent transparent $color-black;
+  border-color:#1E90FF transparent transparent #1E90FF;
   // 按钮中间的小三角翻转
   transform: rotate(45deg) translate(-5px, -5px);
 }

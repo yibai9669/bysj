@@ -2,13 +2,14 @@
   <div class="song-container">
     <el-image class="song-pic" fit="contain" :src="attachImageUrl(songPic)" />
     <ul class="song-info">
+        <li>歌曲：{{ songTitle }}</li>
       <li>歌手：{{ singerName }}</li>
-      <li>歌曲：{{ songTitle }}</li>
+
     </ul>
   </div>
   <div class="container">
     <div class="lyric-container">
-      <div class="song-lyric">
+      <div class="song-lyric" >
         <transition-group name="lyric-fade">
           <!--有歌词-->
           <ul :style="{ top: lrcTop }" class="has-lyric" v-if="lyricArr.length" key="has-lyric">
@@ -132,8 +133,9 @@ export default defineComponent({
         width: 100%;
         height: 40px;
         text-align: center;
-        font-size: 14px;
+        font-size: 16px;
         line-height: 40px;
+
       }
     }
     .no-lyric {

@@ -1,5 +1,6 @@
 <template>
-  <audio :src="attachImageUrl(songUrl)" controls="controls" :ref="player" preload="true" @canplay="canplay" @timeupdate="timeupdate" @ended="ended">
+  <audio :src="attachImageUrl(songUrl)" controls="controls" :ref="player" preload="true" @canplay="canplay"
+         @timeupdate="timeupdate" @ended="ended" autoplay="autoplay">
     <!--（1）属性：controls，preload（2）事件：canplay，timeupdate，ended（3）方法：play()，pause() -->
     <!--controls：向用户显示音频控件（播放/暂停/进度条/音量）-->
     <!--preload：属性规定是否在页面加载后载入音频-->
@@ -10,13 +11,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, getCurrentInstance, computed, watch } from "vue";
-import { useStore } from "vuex";
-import { HttpManager } from "@/api";
+import {defineComponent, ref, getCurrentInstance, computed, watch} from "vue";
+import {useStore} from "vuex";
+import {HttpManager} from "@/api";
 
 export default defineComponent({
   setup() {
-    const { proxy } = getCurrentInstance();
+    const {proxy} = getCurrentInstance();
     const store = useStore();
     const divRef = ref<HTMLAudioElement>();
     const player = (el) => {
@@ -38,7 +39,9 @@ export default defineComponent({
     function togglePlay() {
       isPlay.value ? divRef.value.play() : divRef.value.pause();
     }
+
     // 获取歌曲链接后准备播放
+    /*它定义了一个方法，叫做canplay()，它的作用是在获取歌曲链接后准备播放。它使用了audio标签的属性和事件，以及Vuex的mutation和state。*/
     function canplay() {
       //  记录音乐时长
       proxy.$store.commit("setDuration", divRef.value.duration);
@@ -46,10 +49,12 @@ export default defineComponent({
       divRef.value.play();
       proxy.$store.commit("setIsPlay", true);
     }
+
     // 音乐播放时记录音乐的播放位置
     function timeupdate() {
       proxy.$store.commit("setCurTime", divRef.value.currentTime);
     }
+
     // 音乐播放结束时触发
     function ended() {
       proxy.$store.commit("setIsPlay", false);
@@ -74,3 +79,16 @@ audio {
   display: none;
 }
 </style>
+<!--这个代码是用Vue框架编写的，用于在网页中嵌入音频播放器。它使用了<audio>标签，这个标签是HTML5中新增的，用于在文档中嵌入音频内容12。这个标签有以下几个属性和事件：
+
+controls：向用户显示音频控件（播放/暂停/进度条/音量）12
+preload：属性规定是否在页面加载后载入音频12
+canplay：当音频/视频处于加载过程中时，会发生的事件13
+timeupdate：当目前的播放位置已更改时13
+ended：当目前的播放列表已结束时13
+这个代码还定义了一些方法，如：
+
+togglePlay()：开始/暂停播放
+canplay()：获取歌曲链接后准备播放
+timeupdate()：音乐播放时记录音乐的播放位置
+ended()：音乐播放结束时触发-->

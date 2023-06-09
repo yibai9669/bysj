@@ -11,6 +11,7 @@
       <el-form-item prop="password">
         <el-input type="password" placeholder="密码" v-model="registerForm.password" @keyup.enter="handleLoginIn"></el-input>
       </el-form-item>
+
       <el-form-item class="sign-btn">
         <el-button @click="handleSignUp">注册</el-button>
         <el-button type="primary" @click="handleLoginIn">登录</el-button>

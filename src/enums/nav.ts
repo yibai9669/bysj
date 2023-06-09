@@ -25,6 +25,7 @@ export const HEADERNAVLIST = [
     name: NavName.Singer,
     path: RouterName.Singer,
   },
+
 ];
 
 // 右侧导航栏

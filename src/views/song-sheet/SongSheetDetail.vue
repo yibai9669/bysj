@@ -6,6 +6,7 @@
     </el-aside>
     <el-main class="album-main">
       <h1>简介</h1>
+<!--        正常显示但报红-->
       <p>{{ songDetails.introduction }}</p>
       <!--评分-->
       <div class="album-score">

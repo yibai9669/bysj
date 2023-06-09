@@ -35,14 +35,14 @@ li {
   margin: $header-nav-margin;
   padding: $header-nav-padding;
   line-height: 3.3rem;
-  color: $color-grey;
+  color: 		#6CA6CD;
   border-bottom: none;
   cursor: pointer;
 }
 
 li.active {
-  color: $color-black;
+  color:	#000080;
   font-weight: 600;
-  border-bottom: 5px solid $color-black;
+  border-bottom: 5px solid #000080;
 }
 </style>

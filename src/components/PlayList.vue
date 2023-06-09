@@ -40,6 +40,7 @@ export default defineComponent({
     function goAblum(item) {
       proxy.$store.commit("setSongDetails", item);
       routerManager(path.value, { path: `/${path.value}/${item.id}` });
+      console.log("dizhi",path.value + item.id);
     }
 
     return {

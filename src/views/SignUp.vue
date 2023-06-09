@@ -6,15 +6,16 @@
     </div>
     <el-form ref="signUpForm" label-width="70px" status-icon :model="registerForm" :rules="SignUpRules">
       <el-form-item prop="username" label="用户名">
-        <el-input v-model="registerForm.username" placeholder="用户名"></el-input>
+        <el-input v-model="registerForm.username" placeholder="3-10位用户名"  show-word-limit></el-input>
       </el-form-item>
       <el-form-item prop="password" label="密码">
-        <el-input type="password" placeholder="密码" v-model="registerForm.password"></el-input>
+        <el-input type="password" placeholder="8-16位大小写字母、符号或数字" v-model="registerForm.password"></el-input>
       </el-form-item>
       <el-form-item prop="sex" label="性别">
         <el-radio-group v-model="registerForm.sex">
+            <el-radio :label="1">男</el-radio>
           <el-radio :label="0">女</el-radio>
-          <el-radio :label="1">男</el-radio>
+
           <el-radio :label="2">保密</el-radio>
         </el-radio-group>
       </el-form-item>
@@ -30,14 +31,12 @@
       <el-form-item prop="introduction" label="签名">
         <el-input type="textarea" placeholder="签名" v-model="registerForm.introduction"></el-input>
       </el-form-item>
-      <el-form-item prop="location" label="地区">
-        <el-select v-model="registerForm.location" placeholder="地区" style="width: 100%">
-          <el-option v-for="item in AREA" :key="item.value" :label="item.label" :value="item.value"></el-option>
-        </el-select>
-      </el-form-item>
+
+
       <el-form-item class="sign-btn">
         <el-button @click="goBack()">登录</el-button>
-        <el-button type="primary" @click="handleSignUp(formRef)">确定</el-button>
+        <el-button type="primary" @click="handleSignUp()">确定</el-button>
+<!--        <el-button type="primary" @click="handleSignUp(formRef)">确定</el-button>-->
       </el-form-item>
     </el-form>
   </div>
@@ -49,7 +48,10 @@ import mixin from "@/mixins/mixin";
 import YinLoginLogo from "@/components/layouts/YinLoginLogo.vue";
 import { HttpManager } from "@/api";
 import { getBirth } from "@/utils";
-import { AREA, RouterName, NavName, SignUpRules } from "@/enums";
+// import { AREA, RouterName, NavName, SignUpRules } from "@/enums";
+import { RouterName, NavName, SignUpRules } from "@/enums";
+
+
 
 export default defineComponent({
   components: {
@@ -67,7 +69,7 @@ export default defineComponent({
       email: "",
       birth: new Date(),
       introduction: "",
-      location: "",
+      // location: "",
     });
 
     async function handleSignUp() {
@@ -85,7 +87,7 @@ export default defineComponent({
       params.append("email", registerForm.email);
       params.append("birth", getBirth(registerForm.birth));
       params.append("introduction", registerForm.introduction);
-      params.append("location", registerForm.location);
+      // params.append("location", registerForm.location);
 
       try {
         const result = (await HttpManager.SignUp(params)) as ResponseBody;
@@ -102,12 +104,15 @@ export default defineComponent({
         console.error(error);
       }
     }
-
+    function goBack() {
+      routerManager(RouterName.SignIn, { path: RouterName.SignIn });
+    }
     return {
       SignUpRules,
-      AREA,
+      // AREA,
       registerForm,
       handleSignUp,
+      goBack,
     };
   },
 });
@@ -115,4 +120,8 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 @import "@/assets/css/sign.scss";
+:deep(.el-input__inner::placeholder){
+  color:lightgrey;
+  font-size: 14px;
+}
 </style>

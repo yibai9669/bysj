@@ -7,7 +7,6 @@ import "element-plus/dist/index.css";
 import "./assets/css/index.scss";
 import "./assets/icons/index.js";
 
-import { ComponentCustomProperties } from "vue";
 import { Store } from "vuex";
 declare module "@vue/runtime-core" {
   interface State {

@@ -16,11 +16,11 @@
     <el-form-item prop="introduction" label="签名">
       <el-input type="textarea" placeholder="签名" v-model="registerForm.introduction"></el-input>
     </el-form-item>
-    <el-form-item prop="location" label="地区">
+<!--    <el-form-item prop="location" label="地区">
       <el-select v-model="registerForm.location" placeholder="地区" style="width: 100%">
         <el-option v-for="item in AREA" :key="item.value" :label="item.label" :value="item.value"> </el-option>
       </el-select>
-    </el-form-item>
+    </el-form-item>-->
     <el-form-item prop="phoneNum" label="手机">
       <el-input placeholder="手机" v-model="registerForm.phoneNum"></el-input>
     </el-form-item>
@@ -38,7 +38,8 @@
 import { defineComponent, computed, onMounted, getCurrentInstance, reactive } from "vue";
 import { useStore } from "vuex";
 import mixin from "@/mixins/mixin";
-import { AREA, SignUpRules } from "@/enums";
+// import { AREA, SignUpRules } from "@/enums";
+import { SignUpRules } from "@/enums";
 import { HttpManager } from "@/api";
 import { getBirth } from "@/utils";
 
@@ -56,7 +57,7 @@ export default defineComponent({
       email: "",
       birth: new Date(),
       introduction: "",
-      location: "",
+      // location: "",
       userPic: "",
     });
     const userId = computed(() => store.getters.userId);
@@ -69,7 +70,7 @@ export default defineComponent({
       registerForm.email = result.data[0].email;
       registerForm.birth = result.data[0].birth;
       registerForm.introduction = result.data[0].introduction;
-      registerForm.location = result.data[0].location;
+      // registerForm.location = result.data[0].location;
       registerForm.userPic = result.data[0].avator;
     }
 
@@ -88,7 +89,7 @@ export default defineComponent({
       params.append("email", registerForm.email);
       params.append("birth", getBirth(registerForm.birth));
       params.append("introduction", registerForm.introduction);
-      params.append("location", registerForm.location);
+      // params.append("location", registerForm.location);
 
       const result = (await HttpManager.updateUserMsg(params)) as ResponseBody;
       (proxy as any).$message({
@@ -106,7 +107,7 @@ export default defineComponent({
     });
 
     return {
-      AREA,
+      // AREA,
       registerForm,
       SignUpRules,
       saveMsg,

@@ -8,7 +8,7 @@ export const SONGSTYLE = [
     type: "Two",
   },
   {
-    name: "粤语",
+    name: "流行",
     type: "Three",
   },
   {
@@ -16,19 +16,12 @@ export const SONGSTYLE = [
     type: "Four",
   },
   {
-    name: "日韩",
+    name: "说唱",
     type: "Five",
   },
   {
-    name: "轻音乐",
+    name: "摇滚",
     type: "Six",
   },
-  {
-    name: "BGM",
-    type: "Seven",
-  },
-  {
-    name: "乐器",
-    type: "Eight",
-  },
+
 ];
